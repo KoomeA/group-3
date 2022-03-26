@@ -6,19 +6,24 @@ contract RentManagement {
     uint256 amountPaid;
 
     struct Tenants {
-        uint256 rentPaid;
-        string name;
+        uint tenantId;
+        //string name;
+        //string tenantName;
     }
 
-    //Tenants public tenant = Tenants(rentPaid, name);
+    Tenants[] public tenants;
+    mapping(string => uint256) public tenantName;
 
-    function rent(uint256 _amountRequired) public{
-        amountPaid = _amountRequired;
+    function tenant(uint256 _amountPaid, bool _cleared) public pure returns(uint256, bool) {
+        return (_amountPaid, _cleared);
+         
     }
 
-    function tenant(uint256 _rentPaid) public pure returns(uint256) {
-        return _rentPaid;  
-        }
+    function addTenant( uint _tenantId) public {
+        tenants.push(Tenants(_tenantId));
+        //tenantName[_name] = _tenantId;
+    }
+
 
 
 }
